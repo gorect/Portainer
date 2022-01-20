@@ -8,7 +8,7 @@ sleep 2
 echo "docker rm portainer"
 docker rm portainer
 sleep 2
-echo "docker pull portainer/portainer-ce:2.11.0"
+echo "docker pull portainer/portainer-ce:"$PortainerVersion""
 docker pull portainer/portainer-ce:"$PortainerVersion"
 sleep 2
 echo "docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
