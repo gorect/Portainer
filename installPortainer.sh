@@ -28,9 +28,8 @@ case $input in
 	      echo "Answered No..."
 	      read -r -p "What version number do you want installed? " newversion
 	      PortainerVersion=$newversion
-	      echo "newversion = $newversion"
-	      echo "PortainerVersion = $PortainerVersion"
-	      
+	      #echo "newversion = $newversion"
+	      #echo "PortainerVersion = $PortainerVersion"
 	      echo "docker volume create portainer_data"
 	      docker volume create portainer_data
 	
