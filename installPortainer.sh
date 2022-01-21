@@ -8,7 +8,7 @@ read -r -p "Do you wish to proceed with this version? [Y/N] " input
 case $input in
 	[yY][eE][sS]|[yY])
 	      #test echo
-	      echo "Answered Yes..."
+	      #echo "Answered Yes..."
 	      #actual command to run
 	      echo "docker volume create portainer_data"
 	      docker volume create portainer_data
@@ -25,7 +25,7 @@ case $input in
 	      ;;
 	[nN][oO]|[nN])
 	      #test echo
-	      echo "Answered No..."
+	      #echo "Answered No..."
 	      read -r -p "What version number do you want installed? " newversion
 	      PortainerVersion=$newversion
 	      #echo "newversion = $newversion"
