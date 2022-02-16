@@ -1,6 +1,7 @@
 #!/bin/bash
 read -p "What is the Portainer version that you would like to upgrade to? " PortainerVersion
 
+#Future goal, add a check to make sure that you pick an approprate Portainer version, or that you are not upgrading to the same version that you are already running.
 
 echo "docker stop portainer"
 docker stop portainer
@@ -22,4 +23,4 @@ docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
  -v portainer_data:/data \
  portainer/portainer-ce:"$PortainerVersion"
  
- echo "Your Portainer instance has been updated!"
+ echo "Your Portainer instance has been updated to version "$PortainerVersion"!"
