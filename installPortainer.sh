@@ -13,6 +13,15 @@ DockerCMD() {
 		-v portainer_data:/data portainer/portainer-ce:"$1"
 }
 
+ChkVerStr() {
+	if [[ $1 =~ ^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$ ]]; then
+		return 0
+	else
+		Err 0 'Invalid version string -- try again.'
+		return 1
+	fi
+}
+
 if ! type -P docker &> /dev/null; then
 	Err 1 "Dependency 'docker' not found."
 fi
@@ -29,6 +38,7 @@ while :; do
 			while :; do
 				read -p 'Enter version: '
 				if [[ -n $REPLY ]]; then
+					ChkVerStr "$REPLY" || continue
 					DockerCMD "$REPLY"
 					exit $?
 				else
