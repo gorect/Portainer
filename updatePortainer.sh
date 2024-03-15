@@ -16,16 +16,25 @@ DockerCMD() {
      portainer/portainer-ce:"$PortainerVersion"
 }
 
+ChkVerStr() {
+	if [[ $1 =~ ^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$ ]]; then
+		return 0
+	else
+		Err 0 'Invalid version string -- try again.'
+		return 1
+	fi
+}
+
 if ! type -P docker &> /dev/null; then
 	Err 1 "Dependency 'docker' not found."
 fi
 
 read -p "What Portainer version would you like to upgrade to? " PortainerVersion
 
-#Future goal, add a check to make sure that you pick an approprate Portainer version, or that you are not upgrading to the same version that you are already running.
+#Future goal, add a check to make sure that you are not upgrading to the same version that is already running.
 
 while :; do
-    read -p 'Proceed with v"$PortainerVersion"? [Y/N/Q] ? '
+    read -p 'Proceed with v'"$PortainerVersion"'? [Y/N/Q] ? '
 	case ${REPLY,,} in
 		y|yes)
 			DockerCMD "$PortainerVersion"
@@ -34,7 +43,8 @@ while :; do
 			while :; do
 				read -p 'Enter version: '
 				if [[ -n $REPLY ]]; then
-					DockerCMD "$REPLY"
+    			ChkVerStr "$REPLY" || continue
+                DockerCMD "$REPLY"
 					exit $?
 				else
 					Err 0 'Empty response -- try again.'
