@@ -54,7 +54,7 @@ if ! type -P docker &> /dev/null; then
 	case ${REPLY,,} in
 		y|yes)
 			DockerInstall
-			exit $? ;;
+			return 0 ;;
 		n|no)
 			read -p 'Docker will not be installed. Quitting'
             sleep 3
