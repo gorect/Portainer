@@ -53,8 +53,7 @@ if ! type -P docker &> /dev/null; then
     read -p 'Would you like to install docker? [Y/N/Q] ? '
 	case ${REPLY,,} in
 		y|yes)
-			DockerInstall
-			return 0 ;;
+			DockerInstall ;;
 		n|no)
 			read -p 'Docker will not be installed. Quitting'
             sleep 3
